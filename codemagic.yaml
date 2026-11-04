@@ -6,8 +6,7 @@ workflows:
     instance_type: linux_x2
 
     environment:
-      vars:
-        JAVA_VERSION: "17"
+      java: 17
 
     scripts:
       - name: Extract Android project
@@ -23,7 +22,7 @@ workflows:
             echo "ERROR: Gradle wrapper not found"
             exit 1
           fi
-          echo "PROJECT_DIR=$PROJECT_DIR" >> $CM_ENV
+          echo "PROJECT_DIR=$PROJECT_DIR" >> "$CM_ENV"
 
       - name: Build Android APK
         script: |
@@ -34,3 +33,4 @@ workflows:
 
     artifacts:
       - android-project/**/build/outputs/apk/**/*.apk
+
